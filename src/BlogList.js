@@ -1,3 +1,4 @@
+// deconstruct props ({}) for props
 const BlogList = ({blogs, title}) => {
     // const blogs = props.blogs;
     // const title = props.title;
