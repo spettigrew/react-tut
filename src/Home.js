@@ -10,7 +10,7 @@ const Home = () => {
         const newBlogs = blogs.filter(blog => blog.id !== id);
         setBlogs(newBlogs);
     }
-
+    // runs code at every render
     useEffect(() => {
         console.log('use effect');
     });
