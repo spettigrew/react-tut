@@ -3,10 +3,6 @@ import BlogList from './BlogList';
 
 const Home = () => {
     const [ blogs, setBlogs] = useState(null);
-
-    const handleDelete = (id) => { 
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
     }
     // runs a function after every render
     useEffect(() => {
@@ -22,7 +18,7 @@ const Home = () => {
     return ( 
         <div className="home">
             {/* blogs && = conditional template to evaluate the right or left side of the &&& */}
-            {blogs && <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />}
+            {blogs && <BlogList blogs={blogs} title="All Blogs" />}
             
         </div>
      );
