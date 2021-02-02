@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 
 const Home = () => {
-    const [ blogs, setBlogs] = useState(null);
-    }
+    const [blogs, setBlogs] = useState(null);
     // runs a function after every render
     useEffect(() => {
         fetch('http://localhost:8000/blogs')
         .then(res => {
-             return res.json()
+             return res.json();
         })
         .then(data => {
             setBlogs(data);
@@ -17,11 +16,10 @@ const Home = () => {
 
     return ( 
         <div className="home">
-            {/* blogs && = conditional template to evaluate the right or left side of the &&& */}
+            {/* blogs && = conditional template to evaluate the right or left side of the && */}
             {blogs && <BlogList blogs={blogs} title="All Blogs" />}
             
         </div>
      );
-}
- 
+} 
 export default Home;
