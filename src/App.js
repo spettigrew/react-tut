@@ -10,10 +10,12 @@ function App() {
       <div className="App">
         <Navbar />
         <div className="content">
-          {/* dynamic value =  */}
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/create">
+              <Create />
             </Route>
           </Switch>
         </div>
