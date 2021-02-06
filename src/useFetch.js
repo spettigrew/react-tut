@@ -6,10 +6,12 @@ const useFetch = (url) => {
     const [error, setError] = useState(null)
     // runs a function after every render
     useEffect(() => {
+        // will stop the fetch from re-rendering from the homepage
+        const abortContinue = new AbortController();
         if (!res.ok) {
             throw Error("No data for that resource");
         }
-        fetch(url)
+        fetch(url, {signal: abortContinue.signal})
             .then(res => {
                 return res.json();
             })
@@ -20,10 +22,15 @@ const useFetch = (url) => {
             })
             // catches a network error
             .catch(err => {
+                if (err.name === "AbortError")
                 setIsLoading(false)
                 setError(err.message)
             })
-    }, []);
+        // aborts the fetch it's associated with
+            return () => abortContinue.abort();
+    }, [url]);
+
+
     return {data, isLoading, error}
 }
 
