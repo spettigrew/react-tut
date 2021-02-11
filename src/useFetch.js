@@ -22,11 +22,16 @@ const useFetch = (url) => {
             })
             // catches a network error
             .catch(err => {
-                if (err.name === "AbortError")
+                // recognize the error within the catch and stop the state update
+                if (err.name === "AbortError") {
+                    console.log('fetch abort')
+                    // if there is a network error
+                } else {
                 setIsLoading(false)
                 setError(err.message)
+            }
             })
-        // aborts the fetch it's associated with
+        // the return function aborts the fetch it's associated with within the useEffect 
             return () => abortContinue.abort();
     }, [url]);
 
