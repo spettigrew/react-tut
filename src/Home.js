@@ -7,7 +7,7 @@ const Home = () => {
     return ( 
         <div className="home">
             {/* blogs && = conditional template to evaluate the right or left side of the && */}
-            {error && <div>{ erorr }</div>}
+            {error && <div>{ error }</div>}
             { isLoading && <div>Loading...</div> }
             {blogs && <BlogList blogs={blogs} title="All Blogs" />}
             
