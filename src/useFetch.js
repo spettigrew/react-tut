@@ -8,13 +8,14 @@ const useFetch = (url) => {
     useEffect(() => {
         // will stop the fetch from re-rendering from the homepage
         const abortContinue = new AbortController();
-        if (!res.ok) {
-            throw Error("No data for that resource");
-        }
-        fetch(url, {signal: abortContinue.signal})
+        setTimeout(() => {
+            fetch(url, { signal: abortContinue.signal })
             .then(res => {
-                return res.json();
-            })
+                if (!res.ok) { // error coming back from the server
+                    throw Error("No data for that resource");
+            }
+            return res.json();
+        })
             .then(data => {
                 setData(data);
                 setIsLoading(false);
@@ -31,7 +32,8 @@ const useFetch = (url) => {
                 setError(err.message)
             }
             })
-        // the return function aborts the fetch it's associated with within the useEffect 
+    }, 1000)
+        // the return function aborts the fetch it's associated with within the useEffect. 
             return () => abortContinue.abort();
     }, [url]);
 
