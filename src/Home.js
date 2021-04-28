@@ -2,14 +2,14 @@ import BlogList from './BlogList';
 import useFetch from './useFetch';
 
 const Home = () => {
-    const { data: blogs, isLoading, error } = useFetch('http://localhost:8000/blogs');
+    const { data: blogs, isPending, error } = useFetch('http://localhost:8000/blogs');
     
     return ( 
         <div className="home">
             {/* blogs && = conditional template to evaluate the right or left side of the && */}
             {error && <div>{ error }</div>}
-            { isLoading && <div>Loading...</div> }
-            {blogs && <BlogList blogs={blogs} title="All Blogs" />}
+            {isPending && <div>Loading...</div>}
+            {blogs && <BlogList blogs={blogs} />}
             
         </div>
      );
